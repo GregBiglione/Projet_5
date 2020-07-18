@@ -13,6 +13,7 @@ import com.cleanup.todoc.R;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
      */
     @NonNull
     private List<Task> tasks;
+    //private List<Task> mTasks = new ArrayList<>();
 
     /**
      * The listener for when a task needs to be deleted
@@ -62,12 +64,18 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int position) {
+        //taskViewHolder.bind(tasks.get(position));
         taskViewHolder.bind(tasks.get(position));
     }
 
     @Override
     public int getItemCount() {
         return tasks.size();
+    }
+
+    public void setTasks(List<Task> tasks){
+        this.tasks = tasks;
+        notifyDataSetChanged();
     }
 
     /**

@@ -114,6 +114,14 @@ public class Task {
         this.name = name;
     }
 
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public long getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
     /**
      * Sets the timestamp when the task has been created.
      *
