@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                         new Date().getTime()
                 );
 
+                //addTask(task);
                 mTaskViewModel.insertTask(task);
 
                 dialogInterface.dismiss();
