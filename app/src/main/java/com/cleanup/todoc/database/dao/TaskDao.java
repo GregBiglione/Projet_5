@@ -26,6 +26,6 @@ public interface TaskDao {
     @Delete
     void deleteTask(Task task);
 
-    //@Query("SELECT id FROM Task")
-    //LiveData<List<Task>> getTaskId();
+    @Query("SELECT * FROM Task ORDER BY name ASC")
+    LiveData<List<Task>> getTasksAToZ();
 }

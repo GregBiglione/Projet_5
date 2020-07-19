@@ -14,11 +14,13 @@ public class TaskViewModel extends AndroidViewModel {
 
     private TaskRepository mTaskRepository;
     private LiveData<List<Task>> mTasks;
+    private LiveData<List<Task>> mTasksAToZ;
 
     public TaskViewModel(@NonNull Application application) {
         super(application);
         mTaskRepository = new TaskRepository(application);
         mTasks = mTaskRepository.getAllTasks();
+        mTasksAToZ = mTaskRepository.getTasksAtoZ();
     }
 
     public LiveData<List<Task>> getAllTasks(){
@@ -36,4 +38,6 @@ public class TaskViewModel extends AndroidViewModel {
     public void deleteTask(Task task){
         mTaskRepository.deleteTask(task);
     }
+
+    public LiveData<List<Task>> getTasksAToZ() { return mTasksAToZ; }
 }

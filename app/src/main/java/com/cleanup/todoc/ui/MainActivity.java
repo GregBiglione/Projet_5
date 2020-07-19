@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public void onDeleteTask(Task task) {
         //tasks.remove(task);
-        //mTaskViewModel.deleteTask(task);
+        mTaskViewModel.deleteTask(task);
         updateTasks();
     }
 
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             else if (taskProject != null) {
                 // TODO: Replace this by id of persisted task
                 long id = (long) (Math.random() * 50000);
-
+                //long id = mTask.getId();
 
                 Task task = new Task(
                         id,
@@ -236,6 +236,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * Updates the list of tasks in the UI
      */
     private void updateTasks() {
+        ArrayList<Task> tasks = new ArrayList<>();
         if (tasks.size() == 0) {
             lblNoTasks.setVisibility(View.VISIBLE);
             listTasks.setVisibility(View.GONE);
@@ -244,7 +245,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             listTasks.setVisibility(View.VISIBLE);
             switch (sortMethod) {
                 case ALPHABETICAL:
-                    Collections.sort(tasks, new Task.TaskAZComparator());
+                    //Collections.sort(tasks, new Task.TaskAZComparator());
+                    mTaskViewModel.getTasksAToZ();
                     break;
                 case ALPHABETICAL_INVERTED:
                     Collections.sort(tasks, new Task.TaskZAComparator());
