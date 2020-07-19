@@ -15,12 +15,14 @@ public class TaskViewModel extends AndroidViewModel {
     private TaskRepository mTaskRepository;
     private LiveData<List<Task>> mTasks;
     private LiveData<List<Task>> mTasksAToZ;
+    private LiveData<List<Task>> mTasksZToA;
 
     public TaskViewModel(@NonNull Application application) {
         super(application);
         mTaskRepository = new TaskRepository(application);
         mTasks = mTaskRepository.getAllTasks();
         mTasksAToZ = mTaskRepository.getTasksAtoZ();
+        mTasksZToA = mTaskRepository.getmTasksZtoA();
     }
 
     public LiveData<List<Task>> getAllTasks(){
@@ -40,4 +42,6 @@ public class TaskViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Task>> getTasksAToZ() { return mTasksAToZ; }
+
+    public LiveData<List<Task>> getTasksZToA() { return mTasksZToA; }
 }

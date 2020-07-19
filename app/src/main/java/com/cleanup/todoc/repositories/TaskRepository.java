@@ -14,12 +14,14 @@ public class TaskRepository {
     private TaskDao mTaskDao;
     private LiveData<List<Task>> mAllTasks;
     private LiveData<List<Task>> mTasksAtoZ;
+    private LiveData<List<Task>> mTasksZtoA;
 
     public TaskRepository(Application application){
         TodocDatabase todocDatabase = TodocDatabase.getInstance(application);
         mTaskDao = todocDatabase.taskDao();
         mAllTasks = mTaskDao.getAllTasks();
         mTasksAtoZ = mTaskDao.getTasksAToZ();
+        mTasksZtoA = mTaskDao.getTasksZToA();
     }
 
     public void insertTask(Task task){new InsertTaskAsyncTask(mTaskDao).execute(task); }
@@ -37,6 +39,8 @@ public class TaskRepository {
     }
 
     public LiveData<List<Task>> getTasksAtoZ()  { return mTasksAtoZ; }
+
+    public LiveData<List<Task>> getmTasksZtoA()  { return mTasksZtoA; }
 
     //------------ Async insert -------------------------------------------------------------------
     private static class InsertTaskAsyncTask extends AsyncTask<Task, Void, Void>{
