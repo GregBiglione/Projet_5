@@ -107,10 +107,13 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
         mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
             @Override
-            public void onChanged(@Nullable List<Task> tasks) {
-                adapter.setTasks(tasks);
+            public void onChanged(@Nullable List<Task> t) {
+                tasks.clear();
+                tasks.addAll(t);
+                updateTasks();
             }
         });
+        adapter.setTasks(tasks);
 
         listTasks = findViewById(R.id.list_tasks);
         lblNoTasks = findViewById(R.id.lbl_no_task);
@@ -247,8 +250,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             listTasks.setVisibility(View.VISIBLE);
             switch (sortMethod) {
                 case ALPHABETICAL:
-                    //Collections.sort(tasks, new Task.TaskAZComparator());
-                    mTaskViewModel.getTasksAToZ();
+                    Collections.sort(tasks, new Task.TaskAZComparator());
+                    //mTaskViewModel.getTasksAToZ();
                     break;
                 case ALPHABETICAL_INVERTED:
                     Collections.sort(tasks, new Task.TaskZAComparator());

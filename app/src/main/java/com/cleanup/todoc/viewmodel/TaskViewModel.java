@@ -21,8 +21,8 @@ public class TaskViewModel extends AndroidViewModel {
         super(application);
         mTaskRepository = new TaskRepository(application);
         mTasks = mTaskRepository.getAllTasks();
-        mTasksAToZ = mTaskRepository.getTasksAtoZ();
-        mTasksZToA = mTaskRepository.getmTasksZtoA();
+        //mTasksAToZ = mTaskRepository.getTasksAtoZ();
+        //mTasksZToA = mTaskRepository.getmTasksZtoA();
     }
 
     public LiveData<List<Task>> getAllTasks(){
@@ -41,7 +41,7 @@ public class TaskViewModel extends AndroidViewModel {
         mTaskRepository.deleteTask(task);
     }
 
-    public LiveData<List<Task>> getTasksAToZ() { return mTasksAToZ; }
-
-    public LiveData<List<Task>> getTasksZToA() { return mTasksZToA; }
+    //public LiveData<List<Task>> getTasksAToZ() { return mTasksAToZ; }
+//
+    //public LiveData<List<Task>> getTasksZToA() { return mTasksZToA; }
 }
