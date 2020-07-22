@@ -20,7 +20,7 @@ public class ProjectViewModel extends ViewModel {
         this.executor = executor;
     }
 
-    // -------------- Actions possible -------------------------------------------------------------
+    // -------------- Actions ----------------------------------------------------------------------
     public LiveData<List<Project>> getAllProjects() { return mProjectRepository.getAllProjects(); }
 
     public void createProject(Project project) {

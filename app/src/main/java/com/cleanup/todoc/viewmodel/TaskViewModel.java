@@ -20,7 +20,7 @@ public class TaskViewModel extends ViewModel {
         this.executor = executor;
     }
 
-    // -------------- Actions possible -------------------------------------------------------------
+    // -------------- Actions ----------------------------------------------------------------------
     public LiveData<List<Task>> getAllTasks() { return mTaskRepository.getAllTasks(); }
 
     public void insertTask(Task task) {
