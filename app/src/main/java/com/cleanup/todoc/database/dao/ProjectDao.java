@@ -20,8 +20,8 @@ public interface ProjectDao {
     @Update
     void updateProject(Project project);
 
-    @Query("SELECT * FROM Project WHERE id = :id")
-    LiveData<List<Project>> getProject(long id);
+    //@Query("SELECT * FROM Project WHERE id = :id")
+    //LiveData<List<Project>> getProject(long id);
 
     @Query("SELECT * FROM Project")
     LiveData<List<Project>> getAllProjects();
