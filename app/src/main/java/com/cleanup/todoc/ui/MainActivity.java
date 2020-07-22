@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @SuppressWarnings("NullableProblems")
     @NonNull
     private RecyclerView listTasks;
-    private TaskViewModel mTaskViewModel;
-    private ProjectViewModel mProjectViewmodel;
+    //private TaskViewModel mTaskViewModel;
+    //private ProjectViewModel mProjectViewmodel;
 
     /**
      * The TextView displaying the empty state
@@ -99,15 +99,15 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         setContentView(R.layout.activity_main);
 
-        mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
-        mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(@Nullable List<Task> t) {
-                tasks.clear();
-                tasks.addAll(t);
-                updateTasks();
-            }
-        });
+        //mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
+        //mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+        //    @Override
+        //    public void onChanged(@Nullable List<Task> t) {
+        //        tasks.clear();
+        //        tasks.addAll(t);
+        //        updateTasks();
+        //    }
+        //});
         adapter.setTasks(tasks);
 
         listTasks = findViewById(R.id.list_tasks);
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public void onDeleteTask(Task task) {
         //tasks.remove(task);
-        mTaskViewModel.deleteTask(task);
+        //mTaskViewModel.deleteTask(task);
         updateTasks();
     }
 
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 );
 
                 //addTask(task);
-                mTaskViewModel.insertTask(task);
+                //mTaskViewModel.insertTask(task);
 
                 dialogInterface.dismiss();
             }
