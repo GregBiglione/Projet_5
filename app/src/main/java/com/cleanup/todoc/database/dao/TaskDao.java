@@ -20,15 +20,7 @@ public interface TaskDao {
     @Insert
     void insertTask(Task task);
 
-    //@Update
-    //void updateTask(Task task);
-
     @Delete
     void deleteTask(Task task);
 
-    //@Query("SELECT * FROM Task ORDER BY name ASC")
-    //LiveData<List<Task>> getTasksAToZ();
-
-    //@Query("SELECT * FROM Task ORDER BY name DESC")
-    //LiveData<List<Task>> getTasksZToA();
 }
