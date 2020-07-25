@@ -11,6 +11,9 @@ import android.support.annotation.NonNull;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false)
 public abstract class TodocDatabase extends RoomDatabase {
 
@@ -59,11 +62,11 @@ public abstract class TodocDatabase extends RoomDatabase {
             mProjectDao.createProject(new Project(3L, "Projet Circus", 0xFFA3CED2));
 
             //--------- TASKS ----------------------------------------------------------------------
-            mTaskDao.insertTask(new Task(1, 1L, "Nettoyer les vitres", 1594156455));
-            mTaskDao.insertTask(new Task(2, 2L, "Vider le lave vaisselle", 1594847655));
-            mTaskDao.insertTask(new Task(3, 2L ,"Passer l'aspirateur", 1595366055));
-            mTaskDao.insertTask(new Task(4, 1L, "Arroser les plantes", 1595538855));
-            mTaskDao.insertTask(new Task(5, 3L,"Nettoyer les toilettes", 1595884455));
+            mTaskDao.insertTask(new Task( 1L, "Nettoyer les vitres", 1594156455));
+            mTaskDao.insertTask(new Task( 2L, "Vider le lave vaisselle", 1594847655));
+            mTaskDao.insertTask(new Task( 2L ,"Passer l'aspirateur", 1595366055));
+            mTaskDao.insertTask(new Task( 1L, "Arroser les plantes", 1595538855));
+            mTaskDao.insertTask(new Task( 3L,"Nettoyer les toilettes", 1595884455));
             return null;
         }
     }

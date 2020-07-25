@@ -1,6 +1,5 @@
 package com.cleanup.todoc.ui;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -26,7 +25,6 @@ import com.cleanup.todoc.injections.ViewProjectModelFactory;
 import com.cleanup.todoc.injections.ViewTaskModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
-import com.cleanup.todoc.repositories.TaskRepository;
 import com.cleanup.todoc.viewmodel.ProjectViewModel;
 import com.cleanup.todoc.viewmodel.TaskViewModel;
 
@@ -218,11 +216,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             // If both project and name of the task have been set
             else if (taskProject != null) {
                 // TODO: Replace this by id of persisted task
-                long id = (long) (Math.random() * 50000);
-                //long id = mTask.getId();
 
                 Task task = new Task(
-                        id,
                         taskProject.getId(),
                         taskName,
                         new Date().getTime()
