@@ -22,10 +22,12 @@ import android.widget.TextView;
 
 import com.cleanup.todoc.R;
 import com.cleanup.todoc.injections.Injection;
+import com.cleanup.todoc.injections.ViewProjectModelFactory;
 import com.cleanup.todoc.injections.ViewTaskModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 import com.cleanup.todoc.repositories.TaskRepository;
+import com.cleanup.todoc.viewmodel.ProjectViewModel;
 import com.cleanup.todoc.viewmodel.TaskViewModel;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     /**
      * List of all projects available in the application
      */
-    private final Project[] allProjects = Project.getAllProjects();
+    private final ArrayList<Project> allProjects = new ArrayList<>();
 
     /**
      * List of all current tasks of the application
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @NonNull
     private RecyclerView listTasks;
     private TaskViewModel mTaskViewModel;
+    private ProjectViewModel mProjectViewModel;
 
     /**
      * The TextView displaying the empty state
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         setContentView(R.layout.activity_main);
 
         configureTaskViewModel();
+        configureProjectViewModel();
         adapter.setTasks(tasks);
 
         listTasks = findViewById(R.id.list_tasks);
@@ -120,9 +124,11 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 showAddTaskDialog();
             }
         });
+
+        configureSpinner();
     }
 
-    // ------------------ ViewModel config ---------------------------------------------------------
+    // ------------------ TaskViewModel config -----------------------------------------------------
     private void configureTaskViewModel(){
         ViewTaskModelFactory mViewTaskModelFactory = Injection.provideViewTaskModelFactory(this);
         mTaskViewModel = ViewModelProviders.of(this, mViewTaskModelFactory).get(TaskViewModel.class);
@@ -141,10 +147,21 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         });
     }
 
-    // ------------------ Get Tasks ----------------------------------------------------------------
-    //public LiveData<List<Task>> getTasks(){ return mTaskViewModel.getAllTasks(); }
+    // ------------------ ProjetViewModel config ---------------------------------------------------
+    private void configureProjectViewModel(){
+        ViewProjectModelFactory mProjectModelFactory = Injection.provideViewProjectModelFactory(this);
+        mProjectViewModel = ViewModelProviders.of(this, mProjectModelFactory).get(ProjectViewModel.class);
+    }
 
-    // ------------------ Get Projects -------------------------------------------------------------
+    // ------------------ Spinner config -----------------------------------------------------------
+    private void configureSpinner(){
+        mProjectViewModel.getAllProjects().observe(this, new Observer<List<Project>>() {
+            @Override
+            public void onChanged(@Nullable List<Project> p) {
+                allProjects.addAll(p);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
