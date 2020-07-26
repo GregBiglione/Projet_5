@@ -21,12 +21,10 @@ import android.widget.TextView;
 
 import com.cleanup.todoc.R;
 import com.cleanup.todoc.injections.Injection;
-import com.cleanup.todoc.injections.ViewProjectModelFactory;
-import com.cleanup.todoc.injections.ViewTaskModelFactory;
+import com.cleanup.todoc.injections.ViewModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
-import com.cleanup.todoc.viewmodel.ProjectViewModel;
-import com.cleanup.todoc.viewmodel.TaskViewModel;
+import com.cleanup.todoc.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -87,8 +85,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @SuppressWarnings("NullableProblems")
     @NonNull
     private RecyclerView listTasks;
-    private TaskViewModel mTaskViewModel;
-    private ProjectViewModel mProjectViewModel;
+    //private TaskViewModel mTaskViewModel;
+    //private ProjectViewModel mProjectViewModel;
+    private MainViewModel mMainViewModel;
 
     /**
      * The TextView displaying the empty state
@@ -104,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         setContentView(R.layout.activity_main);
 
-        configureTaskViewModel();
-        configureProjectViewModel();
+        configureMainViewModel();
         adapter.setTasks(tasks);
 
         listTasks = findViewById(R.id.list_tasks);
@@ -126,16 +124,16 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         configureSpinner();
     }
 
-    // ------------------ TaskViewModel config -----------------------------------------------------
-    private void configureTaskViewModel(){
-        ViewTaskModelFactory mViewTaskModelFactory = Injection.provideViewTaskModelFactory(this);
-        mTaskViewModel = ViewModelProviders.of(this, mViewTaskModelFactory).get(TaskViewModel.class);
+    // ------------------ MainViewModel config -----------------------------------------------------
+    private void configureMainViewModel(){
+        ViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
+        mMainViewModel = ViewModelProviders.of(this, mViewModelFactory).get(MainViewModel.class);
     }
 
     // ------------------ RecyclerView config ------------------------------------------------------
     private void configureRecyclerView(){
-        mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
-        mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+        mMainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mMainViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(@Nullable List<Task> t) {
                 tasks.clear();
@@ -145,15 +143,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         });
     }
 
-    // ------------------ ProjetViewModel config ---------------------------------------------------
-    private void configureProjectViewModel(){
-        ViewProjectModelFactory mProjectModelFactory = Injection.provideViewProjectModelFactory(this);
-        mProjectViewModel = ViewModelProviders.of(this, mProjectModelFactory).get(ProjectViewModel.class);
-    }
-
     // ------------------ Spinner config -----------------------------------------------------------
     private void configureSpinner(){
-        mProjectViewModel.getAllProjects().observe(this, new Observer<List<Project>>() {
+        mMainViewModel.getAllProjects().observe(this, new Observer<List<Project>>() {
             @Override
             public void onChanged(@Nullable List<Project> p) {
                 allProjects.addAll(p);
@@ -188,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
     @Override
     public void onDeleteTask(Task task) {
-        mTaskViewModel.deleteTask(task);
+        mMainViewModel.deleteTask(task);
         updateTasks();
     }
 
@@ -215,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             }
             // If both project and name of the task have been set
             else if (taskProject != null) {
-                // TODO: Replace this by id of persisted task
+                // id auto generated
 
                 Task task = new Task(
                         taskProject.getId(),
@@ -258,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * @param task the task to be added to the list
      */
     private void addTask(@NonNull Task task) {
-        mTaskViewModel.insertTask(task);
+        mMainViewModel.insertTask(task);
         updateTasks();
     }
 

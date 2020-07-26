@@ -23,15 +23,10 @@ public class Injection {
 
     public static Executor provideExecutor(){ return Executors.newSingleThreadExecutor(); }
 
-    public static ViewTaskModelFactory provideViewTaskModelFactory(Context context){
+    public static ViewModelFactory provideViewModelFactory(Context context){
         TaskRepository mTaskRepository = provideTaskRepository(context);
-        Executor executor = provideExecutor();
-        return new ViewTaskModelFactory(mTaskRepository, executor);
-    }
-
-    public static ViewProjectModelFactory provideViewProjectModelFactory(Context context){
         ProjectRepository mProjectRepository = provideProjectRepository(context);
         Executor executor = provideExecutor();
-        return new ViewProjectModelFactory(mProjectRepository, executor);
+        return new ViewModelFactory(mTaskRepository, mProjectRepository, executor);
     }
 }
