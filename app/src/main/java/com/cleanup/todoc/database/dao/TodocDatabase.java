@@ -11,8 +11,7 @@ import android.support.annotation.NonNull;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false)
 public abstract class TodocDatabase extends RoomDatabase {
@@ -57,16 +56,10 @@ public abstract class TodocDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             //--------- PROJECTS -------------------------------------------------------------------
-            //mProjectDao.createProject(new Project(1L, "Projet Tartampion", 0xFFEADAD1));
-            //mProjectDao.createProject(new Project(2L, "Projet Lucidia", 0xFFB4CDBA));
-            //mProjectDao.createProject(new Project(3L, "Projet Circus", 0xFFA3CED2));
-
-            //List<Project> projects = Project.getAllProjects();
             Project[] projects =  Project.getAllProjects();
             for (Project p: projects) {
                 mProjectDao.createProject(p);
             }
-
 
             //--------- TASKS ----------------------------------------------------------------------
             mTaskDao.insertTask(new Task( 1L, "Nettoyer les vitres", 1594156455));
