@@ -56,6 +56,17 @@ public class Task {
         this.setCreationTimestamp(creationTimestamp);
     }
 
+    @NonNull
+    public static Task[] getAllTasks(){
+        return new Task[]{
+                new Task(1L, "Nettoyer les vitres", 1594156455),
+                new Task(2L, "Vider le lave vaisselle", 1594847655),
+                new Task(2L ,"Passer l'aspirateur", 1595366055),
+                new Task(1L, "Arroser les plantes", 1595538855),
+                new Task(3L,"Nettoyer les toilettes", 1595884455)
+        };
+    }
+
     /**
      * Returns the unique identifier of the task.
      *

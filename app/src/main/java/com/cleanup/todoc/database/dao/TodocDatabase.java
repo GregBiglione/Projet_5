@@ -62,11 +62,10 @@ public abstract class TodocDatabase extends RoomDatabase {
             }
 
             //--------- TASKS ----------------------------------------------------------------------
-            mTaskDao.insertTask(new Task( 1L, "Nettoyer les vitres", 1594156455));
-            mTaskDao.insertTask(new Task( 2L, "Vider le lave vaisselle", 1594847655));
-            mTaskDao.insertTask(new Task( 2L ,"Passer l'aspirateur", 1595366055));
-            mTaskDao.insertTask(new Task( 1L, "Arroser les plantes", 1595538855));
-            mTaskDao.insertTask(new Task( 3L,"Nettoyer les toilettes", 1595884455));
+            Task[] tasks = Task.getAllTasks();
+            for (Task t: tasks) {
+                mTaskDao.insertTask(t);
+            }
             return null;
         }
     }
