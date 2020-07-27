@@ -47,16 +47,15 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            style="@style/n_size_task_title"
+            style="@style/l_size_task_title"
             tools:text="@sample/tasks.json/data/taskName" />
-
         <TextView
             android:id="@+id/lbl_project_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            style="@style/n_size_project"
+            style="@style/l_size_project"
             tools:text="@sample/tasks.json/data/projectName" />
     </LinearLayout>
 </RelativeLayout>

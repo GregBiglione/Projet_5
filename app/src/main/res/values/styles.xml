@@ -11,4 +11,63 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
+    <!--////////////////////////////// S style //////////////////////////////////////////////////-->
+
+    <style name="s_size_img_margin">
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="s_size_task_title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="s_size_project">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!--////////////////////////////// N style //////////////////////////////////////////////////-->
+
+    <style name="n_size_task_title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="n_size_project">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!--////////////////////////////// L style //////////////////////////////////////////////////-->
+
+    <style name="l_size_task_title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="l_size_project">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!--////////////////////////////// XL style //////////////////////////////////////////////////-->
+
+    <style name="xl_size_task_title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="xl_size_project">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
 </resources>
