@@ -85,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @SuppressWarnings("NullableProblems")
     @NonNull
     private RecyclerView listTasks;
-    //private TaskViewModel mTaskViewModel;
-    //private ProjectViewModel mProjectViewModel;
     private MainViewModel mMainViewModel;
 
     /**

@@ -27,7 +27,6 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
      */
     @NonNull
     private List<Task> tasks;
-    //private List<Task> mTasks = new ArrayList<>();
 
     /**
      * The listener for when a task needs to be deleted
@@ -140,11 +139,6 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
             imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //final Object tag = view.getTag();
-                    //if (tag instanceof Task) {
-                    //    TaskViewHolder.this.deleteTaskListener.onDeleteTask((Task) tag);
-                    //
-                    //}
                     if (deleteTaskListener != null){
                         deleteTaskListener.onDeleteTask(tasks.get(getAdapterPosition()));
                     }
